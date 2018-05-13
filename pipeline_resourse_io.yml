@@ -3,7 +3,7 @@ resources:
   - name: resource-article
     type: git
     source:
-        uri: https://github.com/rixycf/concourse-weblog-deploy.git
+        uri: https://github.com/rixycf/concourse-weblog-test.git
         branch: master
 
 jobs:
