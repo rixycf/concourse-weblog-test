@@ -11,6 +11,8 @@ jobs:
     public: true
     plan:
       - get: resource-article
+        resource: resource-article
+        trigger: true
       - task: generate-file
         config:
             platform: linux
@@ -19,6 +21,9 @@ jobs:
                 source: {repository: busybox}
             inputs:
               - name: resource-article
+            outputs:
+              - name: output-file
+                path: ./test.txt
             run:
                 path: ./resource-article/scripts/generate_file.sh
                 # path: ls
@@ -27,3 +32,19 @@ jobs:
                 # path: echo
                 # args:
                 #   - helloworld > test.sh
+  # - name: job-cat-file
+  #   public: true
+  #   plan:
+  #     - get: output-file
+  #     - task: cat-file
+  #       config:
+  #           platform: linux
+  #           image_resource:
+  #               type: docker-image
+  #               source: {repository: busybox}
+  #           inputs:
+  #             - name: output-file
+  #           run:
+  #               path: cat
+  #               args:
+  #                 - ./outpu-file/test.txt
