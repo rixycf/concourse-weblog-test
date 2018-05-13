@@ -1,0 +1,12 @@
+---
+platform: linux
+
+image_resourse:
+    type: docker-image
+    source: {repository: busybox}
+
+inputs:
+    - name: currentdirectory
+
+run:
+    path: ./currentdirectory/task_hugo_generate.sh

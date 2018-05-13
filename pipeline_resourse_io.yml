@@ -1,0 +1,29 @@
+---
+resources:
+  - name: resource-article
+    type: git
+    source:
+        uri: https://github.com/rixycf/concourse-weblog-deploy.git
+        branch: master
+
+jobs:
+  - name: job-generate-file
+    public: true
+    plan:
+      - get: resource-article
+      - task: generate-file
+        config:
+            platform: linux
+            image_resource:
+                type: docker-image
+                source: {repository: busybox}
+            inputs:
+              - name: resource-article
+            run:
+                path: ./resource-article/scripts/generate_file.sh
+                # path: ls
+                # args:
+                #   - -lat
+                # path: echo
+                # args:
+                #   - helloworld > test.sh
