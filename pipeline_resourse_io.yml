@@ -12,11 +12,11 @@ resources:
   - name: resource-hugo
     type: git
     source:
-        uri: https://github.com/rixycf/weblog_hugo.git
+        # uri: https://github.com/rixycf/weblog_hugo.git
         branch: master
-        # uri: ((git-hugo-repository))
-        # branch: master
-        # private_key: ((git-ssh-key))
+        uri: ((git-hugo-repository))
+        branch: master
+        private_key: ((git-ssh-key))
 
 jobs:
   - name: job-generate-file
