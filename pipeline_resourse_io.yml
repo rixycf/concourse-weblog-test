@@ -1,50 +1,42 @@
 ---
 resources:
-  - name: resource-article
+  - name: resource-scripts
     type: git
     source:
         uri: https://github.com/rixycf/concourse-weblog-test.git
         branch: master
+  # - name: resource-mds
+  #   type: git
+  #   source: ((git-mds-repository))
+
+  - name: resource-hugo
+    type: git
+    source:
+        uri: https://github.com/rixycf/weblog_hugo.git
+        branch: master
+        # uri: ((git-hugo-repository))
+        # branch: master
+        # private_key: ((git-ssh-key))
 
 jobs:
   - name: job-generate-file
     public: true
     plan:
-      - get: resource-article
-        resource: resource-article
+      - get: resource-scripts
+        resource: resource-scripts
         trigger: true
+      - get: resource-hugo
+
       - task: generate-file
         config:
             platform: linux
             image_resource:
                 type: docker-image
-                source: {repository: busybox}
+                source: {repository: starkandwayne/concourse}
             inputs:
-              - name: resource-article
-            outputs:
-              - name: output-file
-                path: ./test.txt
+              - name: resource-scripts
+              - name: resource-hugo
             run:
-                path: ./resource-article/scripts/generate_file.sh
-                # path: ls
-                # args:
-                #   - -lat
-                # path: echo
-                # args:
-                #   - helloworld > test.sh
-  # - name: job-cat-file
-  #   public: true
-  #   plan:
-  #     - get: output-file
-  #     - task: cat-file
-  #       config:
-  #           platform: linux
-  #           image_resource:
-  #               type: docker-image
-  #               source: {repository: busybox}
-  #           inputs:
-  #             - name: output-file
-  #           run:
-  #               path: cat
-  #               args:
-  #                 - ./outpu-file/test.txt
+                path: ./resource-scripts/scripts/generate_file.sh
+      # - put: resource-hugo
+      #   params: {repositoriy: }

@@ -2,4 +2,5 @@
 
 echo "hello world"
 echo "hello world" > test.txt
-ls -lat
+ls -lat resource-hugo/ 
+
