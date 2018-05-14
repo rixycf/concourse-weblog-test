@@ -37,6 +37,6 @@ jobs:
               - name: resource-scripts
               - name: resource-hugo
             run:
-                path: ./resource-scripts/scripts/generate_file.sh
+                path: ./resource-scripts/scripts/hugo_generate.sh
       # - put: resource-hugo
       #   params: {repositoriy: }
