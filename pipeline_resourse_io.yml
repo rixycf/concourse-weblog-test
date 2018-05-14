@@ -17,10 +17,11 @@ resources:
         uri: ((git-hugo-repository))
         branch: master
         private_key: ((git-ssh-key))
+        submodules: all
 
 jobs:
   - name: job-generate-file
-    public: true
+    public: false
     plan:
       - get: resource-scripts
         resource: resource-scripts
