@@ -32,7 +32,9 @@ jobs:
             platform: linux
             image_resource:
                 type: docker-image
-                source: {repository: rixycf/hugo_git_alpine}
+                source:
+                    repository: rixycf/hugo_git_alpine
+                    tag: 0.1
             inputs:
               - name: resource-scripts
               - name: resource-hugo
