@@ -17,7 +17,15 @@ resources:
         uri: ((git-hugo-repository))
         branch: master
         private_key: ((git-ssh-key))
+        # submoduleをcloneしてくるようの設定
         submodules: all
+
+  - name: gh-pages
+    type: git 
+    source:
+        branch: master
+        uri: ((git-ghpage-repository))
+        private_key: ((git-ssh-key))
 
 jobs:
   - name: job-generate-file
@@ -39,7 +47,12 @@ jobs:
             inputs:
               - name: resource-scripts
               - name: resource-hugo
+            outputs:
+              - name: public_modified
             run:
                 path: ./resource-scripts/scripts/hugo_generate.sh
+      - put: gh-pages
+        params:
+            repository: public_modified
       # - put: resource-hugo
       #   params: {repositoriy: }
