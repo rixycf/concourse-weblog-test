@@ -1,0 +1,30 @@
+## git resource でpull してpushするパイプライン
+---
+resources:
+  - name: script-files
+    type: git
+    source:
+        uri: ((git-script-repository))
+        branch: master
+        private_key: ((git-ssh-key))
+        
+jobs:
+  - name: add-file
+    plan:
+      - get: script-files
+      - task: add-cat
+        config:
+            platform: linux
+            image_resource:
+                type: docker-image
+                source: {repository: starkandwayne/concourse}
+            inputs:
+              - name: script-files
+            outputs:
+              - name: modify_repo
+            run:
+                path: script-files
+                
+      - put: script-files
+        params: {repository: modify_repo}
+

@@ -51,6 +51,7 @@ jobs:
               - name: public_modified
             run:
                 path: ./resource-scripts/scripts/hugo_generate.sh
+
       - put: gh-pages
         params:
             repository: public_modified
