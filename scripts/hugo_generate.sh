@@ -7,8 +7,8 @@ hugo -s resource-hugo
 cd resource-hugo
 pwd
 
-git clone public public_modified
-cd public_modified
+git clone public ../public_modified
+cd ../public_modified
 
 echo "test" >> test.txt
 pwd

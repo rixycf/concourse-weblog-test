@@ -15,7 +15,6 @@ resources:
         # uri: https://github.com/rixycf/weblog_hugo.git
         branch: master
         uri: ((git-hugo-repository))
-        branch: master
         private_key: ((git-ssh-key))
         # submoduleをcloneしてくるようの設定
         submodules: all
@@ -23,6 +22,7 @@ resources:
   - name: gh-pages
     type: git 
     source:
+        submodules: all
         branch: master
         uri: ((git-ghpage-repository))
         private_key: ((git-ssh-key))
