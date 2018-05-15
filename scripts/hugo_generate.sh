@@ -9,8 +9,9 @@ pwd
 
 git clone public public_modified
 cd public_modified
-# echo "test" >> test.txt
-# pwd
+
+echo "test" >> test.txt
+pwd
 
 git config --global user.email "kasnake1013@gmail.com"
 git config --global user.name "rixycf"
