@@ -23,7 +23,7 @@ jobs:
             outputs:
               - name: modify_repo
             run:
-                path: script-files
+                path: script-files/scripts/push_test.sh
                 
       - put: script-files
         params: {repository: modify_repo}
