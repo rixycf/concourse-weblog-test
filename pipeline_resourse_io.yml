@@ -31,6 +31,7 @@ jobs:
       - get: resource-scripts
         resource: resource-scripts
       - get: resource-hugo
+        resource: resource-hugo
         trigger: true
 
       - task: generate-file
@@ -50,6 +51,9 @@ jobs:
                 path: resource-scripts/scripts/hugo_generate.sh
 
       - put: gh-pages
-        params: {repository: public_modified}
+        # params: {repository: public_modified}
+        params:
+            repository: public_modified
+            merge:
       # - put: resource-hugo
       #   params: {repositoriy: }

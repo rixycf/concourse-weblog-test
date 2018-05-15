@@ -8,7 +8,7 @@ cd resource-hugo
 pwd
 
 cd public
-git pull
+# git pull
 echo "test" >> test.txt
 git config --global user.email "kasnake1013@gmail.com"
 git config --global user.name "rixycf"
