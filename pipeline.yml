@@ -9,7 +9,6 @@ resources:
   - name: resource-hugo
     type: git
     source:
-        # uri: https://github.com/rixycf/weblog_hugo.git
         branch: master
         uri: ((git-hugo-repository))
         private_key: ((git-ssh-key))
@@ -51,9 +50,6 @@ jobs:
                 path: resource-scripts/scripts/hugo_generate.sh
 
       - put: gh-pages
-        # params: {repository: public_modified}
         params:
             repository: public_modified
-            merge:
-      # - put: resource-hugo
-      #   params: {repositoriy: }
+            merge: true
